@@ -3,15 +3,17 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-/**
- * Created by ashepelsky on 4/11/2017.
- */
-public class PropertyLoader {
+class PropertyLoader {
 
     private static Properties props = new Properties();
     private static InputStream input = null;
 
-    public static double[] loadInitialValues(char value) {
+    /**
+     * Load X or Y coefficients form property file
+     * @param value - Select X or Y coefficients to read from property file
+     * @return Array of double coefficients from property file
+     */
+    static double[] loadInitialValues(char value) {
         try {
             input = new FileInputStream("src/resources/initialValues.properties");
             props.load(input);

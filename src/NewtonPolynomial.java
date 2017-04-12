@@ -1,5 +1,5 @@
 /**
- * Created by ashepelsky on 4/11/2017.
+ * Class designed to Work with Newton Polynomial
  */
 public class NewtonPolynomial {
     private double x[] = PropertyLoader.loadInitialValues('x');
@@ -17,12 +17,13 @@ public class NewtonPolynomial {
         for (int i = 1; i < degree; i++) {
             for (int j = 0; j < degree - i; j++) {
                 temp2 = y[j + k];
+                //Calculate divided differences
                 y[j + i] = (temp2 - temp1) / (x[j + i] - x[j]);
                 System.out.print(y[j + i] + "\t\t");
 
                 temp1 = temp2;
             }
-            System.out.println(" ");
+            System.out.print("\n");
             k++;
             temp1 = y[i];
         }
@@ -47,9 +48,14 @@ public class NewtonPolynomial {
 
     private void printPolynomial() {
         createPolynomialFormula();
-        System.out.println("L(" + degree + ") = " + y[0] + " + (x - " + x[0] + " )" + polynomial);
+        System.out.println("\nL(" + degree + ") = " + y[0] + " + (x - " + x[0] + " )" + polynomial);
     }
 
+    /**
+     * Calculates Newton Polynomial and Print Table of divided differences + Polynomial formula.
+     * @param x - Value to calculate ny Newton Polynomial
+     * @return Value calculated by Newton Polynomial
+     */
     public double calculate(double x) {
         calculateInterpolation();
         printPolynomial();
