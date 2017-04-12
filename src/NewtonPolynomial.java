@@ -5,6 +5,8 @@ public class NewtonPolynomial {
     private double x[] = PropertyLoader.loadInitialValues('x');
     private double y[] = PropertyLoader.loadInitialValues('y');
     private int degree = x.length;
+    private int iterator = 0;
+    private String polynomial = "";
 
     private void calculateInterpolation() {
         double temp1 = y[0];
@@ -16,7 +18,7 @@ public class NewtonPolynomial {
             for (int j = 0; j < degree - i; j++) {
                 temp2 = y[j + k];
                 y[j + i] = (temp2 - temp1) / (x[j + i] - x[j]);
-                System.out.print(y[j + i] + " \t");
+                System.out.print(y[j + i] + "\t\t");
 
                 temp1 = temp2;
             }
@@ -34,12 +36,23 @@ public class NewtonPolynomial {
         return result;
     }
 
-    private void printFormula() {
+    private String createPolynomialFormula() {
+        if (iterator < degree - 1) {
+            iterator++;
+            polynomial = "(" + y[iterator] + " + (x - " + x[iterator] + ")" + createPolynomialFormula() + ")";
+
+        }
+        return polynomial;
+    }
+
+    private void printPolynomial() {
+        createPolynomialFormula();
+        System.out.println("L(" + degree + ") = " + y[0] + " + (x - " + x[0] + " )" + polynomial);
     }
 
     public double calculate(double x) {
         calculateInterpolation();
-        printFormula();
+        printPolynomial();
         return calculatePolynomial(x);
     }
 
