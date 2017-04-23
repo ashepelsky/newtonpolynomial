@@ -32,7 +32,8 @@ public class NewtonPolynomial {
     private double calculatePolynomial(double x) {
         double result = 1;
         for (int i = degree - 1; i > -1; i--) {
-            result *= y[i] + (x - this.x[i]);
+            result *= (x - this.x[i]);
+            result += y[i];
         }
         return result;
     }
@@ -53,6 +54,7 @@ public class NewtonPolynomial {
 
     /**
      * Calculates Newton Polynomial and Print Table of divided differences + Polynomial formula.
+     *
      * @param x - Value to calculate ny Newton Polynomial
      * @return Value calculated by Newton Polynomial
      */
