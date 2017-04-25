@@ -1,3 +1,5 @@
+package Core;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,7 +17,7 @@ class PropertyLoader {
      */
     static double[] loadInitialValues(char value) {
         try {
-            input = new FileInputStream("src/resources/initialValues.properties");
+            input = new FileInputStream("src/main/java/resources/initialValues.properties");
             props.load(input);
             String stringValues[] = props.getProperty(String.valueOf(value)).split(",");
 

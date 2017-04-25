@@ -1,3 +1,5 @@
+package Core;
+
 import java.util.ArrayList;
 
 /**
@@ -9,7 +11,7 @@ public class NewtonPolynomial {
     private int degree = x.length;
     private int iterator = 0;
     private String polynomialFormula = "";
-    private ArrayList<Double> interpolation = new ArrayList<>();
+    private ArrayList<Double> interpolation = new ArrayList<Double>();
 
     public String getPolynomialFormula() {
         createPolynomialFormula();

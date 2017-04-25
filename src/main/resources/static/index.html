@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<body ng-app="hello">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<div>
+    <h1>Example</h1>
+    <div ng-controller="home" ng-cloak class="ng-cloak">
+        <div ng-repeat="x in greeting.id">
+            <p>The ID iis {{x.name}}</p>
+            <p>The content is {{x.age}}</p>
+        </div>
+    </div>
+</div>
+
+<script>
+   angular.module('hello', [])
+  .controller('home', function($scope, $http) {
+  $http.get('/').success(function(data) {
+    $scope.greeting = data;
+  })
+});
+
+</script>
+</body>
+</html>
