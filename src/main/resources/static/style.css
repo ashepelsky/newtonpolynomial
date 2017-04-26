@@ -1,0 +1,27 @@
+﻿#plot-area{
+	width:50%;
+	height: 70vh;
+	margin: 0;
+	border: solid 1px grey;
+}
+
+#data-area{
+	margin:2%;
+	width: 46%;
+	height: 70vh;
+}
+
+input{
+	width: 60%;
+	text-align: center;
+	position: relative;
+	left: 20%;
+}
+button{
+	width:40%;
+	height:5vh;
+	position: relative;
+	left: 30%;
+	top: 5px;
+}
+
