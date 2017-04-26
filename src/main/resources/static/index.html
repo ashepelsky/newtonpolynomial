@@ -1,25 +1,51 @@
-<!doctype html>
+﻿<!doctype html>
 <html>
-<body ng-app="hello">
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-<div>
-    <h1>Example</h1>
-    <div ng-controller="home" ng-cloak class="ng-cloak">
-        <div ng-repeat="x in greeting.id">
-            <p>The ID iis {{x.name}}</p>
-            <p>The content is {{x.age}}</p>
-        </div>
-    </div>
-</div>
+	<head>
+        <meta charset="utf-8"/>
+		<!--CSS-->
+		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<!--Script-->
+		<script src="js/script.js"></script>
+		<script src="js/plotly-latest.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	</head>
 
-<script>
-   angular.module('hello', [])
-  .controller('home', function($scope, $http) {
-  $http.get('/').success(function(data) {
-    $scope.greeting = data;
-  })
-});
+	<body ng-app="general-data">
+		<div>
+			<div ng-controller="home" ng-cloak class="ng-cloak" class="row">
+				<div class="col-lg-6 col-md-6 col-sm-12" id="plot-area" ng-init="drawPlot()">
+				</div>
+				<div class="col-lg-6 cjl-md-6 col-sm-12" id="data-area">
+					<h3 class="text-center">Таблиця розділених різниць</h3>
+					<div onload="differencesLoad(model)"></div>
+					<h3 class="text-center">Многочлен Ньютона</h3>
+					<p>{{model.polynomialFormula}}</p>
+					<h3 class="text-center">Введіть значення х</h3>
+					<input name="value" type="number"><br>
+					<button onclick=""> Порахувати </button>
+				</div>
+			</div>
+		</div>
 
-</script>
+		<div class="row">
+			<div class="col-lg-3 col-md-3 col-sm-12">
+				<h3 class="text-center">Многочлен Ньютона</h3>
+				<h4 class="text-center">1</h4>
+			</div>
+			<div class="col-lg-3 col-md-3 col-sm-12">
+				<h3 class="text-center">Значення функції</h3>
+				<h4 class="text-center"></h4>
+			</div>
+			<div class="col-lg-3 col-md-3 col-sm-12">
+				<h3 class="text-center">Практична похибка</h3>
+				<h4 class="text-center">1</h4>
+			</div>
+			<div class="col-lg-3 col-md-3 col-sm-12">
+				<h3 class="text-center">Теоретична похибка</h3>
+				<h4 class="text-center">1</h4>
+			</div>
+		</div>
+		<script src="js/get-data.js"></script>
 </body>
 </html>
