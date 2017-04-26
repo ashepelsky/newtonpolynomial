@@ -6,12 +6,30 @@ import java.util.ArrayList;
  * Class designed to Work with Newton Polynomial
  */
 public class NewtonPolynomial {
-    private double x[] = PropertyLoader.loadInitialValues('x');
-    private double y[] = PropertyLoader.loadInitialValues('y');
-    private int degree = x.length;
+    private double x[];
+    private double y[];
+    private int degree;
     private int iterator = 0;
     private String polynomialFormula = "";
     private ArrayList<Double> interpolation = new ArrayList<Double>();
+
+    public NewtonPolynomial() {
+        x = PropertyLoader.loadInitialValues('x');
+        y = new double[x.length];
+        for (int i = 0; i < x.length; i++) {
+            y[i] = calculateInitialY(x[i]);
+        }
+
+        degree = x.length;
+    }
+
+    public double[] getX() {
+        return x;
+    }
+
+    public double[] getY() {
+        return y;
+    }
 
     public String getPolynomialFormula() {
         createPolynomialFormula();
@@ -30,6 +48,10 @@ public class NewtonPolynomial {
             result += y[i];
         }
         return result;
+    }
+
+    private double calculateInitialY(double x){
+        return Math.cos(-2 * x) / 4;
     }
 
     private void calculateInterpolation() {
