@@ -20,7 +20,6 @@ public class NewtonPolynomialController {
 
         model.put("interpolation", service.getInterpolationValues().toString());
         model.put("polynomialFormula", service.getPolynomialFormula());
-        model.put("polynomialValue", service.calculatePolynomial(0.333));
 
         return model;
     }
