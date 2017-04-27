@@ -2,11 +2,8 @@ angular.module('general-data', [])
     .controller('home', function($scope, $http) {
         $http.get('/').success(function(data) {
             $scope.model = data;
-        })
-
-        $scope.drawPlot = function() {
-            var X=[1,2,3.1,5];
-            var Y = [-10, 15, 13, 17];
+            var X= data.x;
+            var Y = data.y;
             var func = {
                 x: X,
                 y: Y,
@@ -16,7 +13,20 @@ angular.module('general-data', [])
                 title: "Function Graphic"
             };
             var data = [func];
-
             Plotly.newPlot('plot-area', data, layout);
-        }
-    });
+
+        });
+
+        $scope.getX =  function() {
+            $http({
+                method: 'GET',
+                url: "/api/" + $scope.x
+           }).success(function(data) {
+               $scope.xData = data;
+
+               //out errors
+
+
+           });
+        };
+    })
