@@ -1,5 +1,7 @@
 package Core;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
 import java.util.ArrayList;
 
 /**
@@ -33,7 +35,7 @@ public class NewtonPolynomial {
 
     public String getPolynomialFormula() {
         createPolynomialFormula();
-        return "L(" + degree + ") = " + y[0] + " + (x - " + x[0] + " )" + polynomialFormula;
+        return "L(" + degree + ") = " + new BigDecimal(y[0]).setScale(3, BigDecimal.ROUND_DOWN) + " + (x - " + new BigDecimal(x[0]).setScale(3, BigDecimal.ROUND_DOWN) + " )" + polynomialFormula;
     }
 
     public ArrayList<Double> getInterpolationValues() {
@@ -77,7 +79,7 @@ public class NewtonPolynomial {
     private String createPolynomialFormula() {
         if (iterator < degree - 1) {
             iterator++;
-            polynomialFormula = "(" + y[iterator] + " + (x - " + x[iterator] + ")" + createPolynomialFormula() + ")";
+            polynomialFormula = "(" + new BigDecimal(y[iterator]).setScale(3, BigDecimal.ROUND_DOWN) + " + (x - " + new BigDecimal(x[iterator]).setScale(3, BigDecimal.ROUND_DOWN) + ")" + createPolynomialFormula() + ")";
 
         }
         return polynomialFormula;
@@ -86,7 +88,7 @@ public class NewtonPolynomial {
     @Deprecated
     private void printPolynomial() {
         createPolynomialFormula();
-        System.out.println("\nL(" + degree + ") = " + y[0] + " + (x - " + x[0] + " )" + polynomialFormula);
+        System.out.println("\nL(" + degree + ") = " + new BigDecimal(y[0]).setScale(3, BigDecimal.ROUND_DOWN) + " + (x - " + new BigDecimal(x[0]).setScale(3, BigDecimal.ROUND_DOWN) + " )" + polynomialFormula);
     }
 
     /**

@@ -1,9 +1,9 @@
 angular.module('general-data', [])
     .controller('home', function($scope, $http) {
-        $http.get('/').success(function(data) {
-            $scope.model = data;
-            var X= data.x;
-            var Y = data.y;
+        $http.get('/').success(function(response) {
+            $scope.model = response;
+            var X = response.x;
+            var Y = response.y;
             var func = {
                 x: X,
                 y: Y,
@@ -15,14 +15,20 @@ angular.module('general-data', [])
             var data = [func];
             Plotly.newPlot('plot-area', data, layout);
 
+            //#####
+
+
         });
 
         $scope.getX =  function() {
             $http({
                 method: 'GET',
                 url: "/api/" + $scope.x
-           }).success(function(data) {
-               $scope.xData = data;
+           }).success(function(response) {
+               $scope.xData = response;
+
+               $scope.xData.functionValue = Math.cos(-2*$scope.x)/4;
+               $scope.xData.partialError = Math.abs($scope.xData.theoreticalError)
 
                //out errors
 
